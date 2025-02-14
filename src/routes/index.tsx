@@ -312,7 +312,7 @@ export default function Portfolio() {
           href="https://www.youtube.com/watch?v=tzjrm0lWsqE"
         >
           <p className="mb-4">
-            Caner, 22 year old software developer from Turkey, studying Computer
+            Caner, 23 year old software developer from Turkey, studying Computer
             Engineering. Backend developer at awesome places for a couple years
             now.
           </p>
