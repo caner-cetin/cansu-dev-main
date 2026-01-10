@@ -1,19 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
-import { GithubIcon, Mail, Music, Pause, Play } from 'lucide-react'
-import figlet from 'figlet'
-import { AnimatePresence, motion } from 'framer-motion'
-import { createFileRoute } from '@tanstack/react-router'
+import { useEffect, useRef, useState } from "react";
+import { GithubIcon, Mail, Music, Pause, Play } from "lucide-react";
+import figlet from "figlet";
+import { AnimatePresence, motion } from "framer-motion";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: Portfolio,
-})
+});
 
 interface TechStackProps {
-  href: string
-  icon: string
-  shadowColor: string
-  name: string
-  index: number
+  href: string;
+  icon: string;
+  shadowColor: string;
+  name: string;
+  index: number;
 }
 const TechStack = ({
   href,
@@ -22,7 +22,7 @@ const TechStack = ({
   name,
   index,
 }: TechStackProps) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.a
@@ -33,13 +33,13 @@ const TechStack = ({
       transition={{
         duration: 0.5,
         delay: index * 0.1,
-        type: 'spring',
+        type: "spring",
         stiffness: 100,
       }}
       whileHover={{
         y: -5,
         scale: 1.1,
-        transition: { type: 'spring', stiffness: 300 },
+        transition: { type: "spring", stiffness: 300 },
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -58,7 +58,7 @@ const TechStack = ({
         alt={`${name} Logo`}
         className="h-8 w-auto relative z-10"
         style={{
-          filter: 'grayscale(100%) brightness(1)',
+          filter: "grayscale(100%) brightness(1)",
         }}
         animate={{
           opacity: isHovered ? 1 : 0.7,
@@ -67,37 +67,37 @@ const TechStack = ({
         transition={{ duration: 0.2 }}
       />
     </motion.a>
-  )
-}
+  );
+};
 
 interface SectionProps {
-  title: string
-  children: React.ReactNode
-  href?: string
-  delay?: number
+  title: string;
+  children: React.ReactNode;
+  href?: string;
+  delay?: number;
 }
 
 const Section = ({ title, children, href, delay }: SectionProps) => {
-  if (!delay) delay = 0
-  const [isVisible, setIsVisible] = useState(false)
+  if (!delay) delay = 0;
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
+          setIsVisible(true);
         }
       },
       { threshold: 0.1 },
-    )
+    );
 
-    const element = document.getElementById(`section-${title}`)
-    if (element) observer.observe(element)
+    const element = document.getElementById(`section-${title}`);
+    if (element) observer.observe(element);
 
     return () => {
-      if (element) observer.unobserve(element)
-    }
-  }, [title])
+      if (element) observer.unobserve(element);
+    };
+  }, [title]);
 
   const variants = {
     hidden: {
@@ -113,19 +113,19 @@ const Section = ({ title, children, href, delay }: SectionProps) => {
         ease: [0.6, -0.05, 0.01, 0.99],
       },
     },
-  }
+  };
 
   return (
     <motion.div
       id={`section-${title}`}
       initial="hidden"
-      animate={isVisible ? 'visible' : 'hidden'}
+      animate={isVisible ? "visible" : "hidden"}
       variants={variants}
     >
       <motion.div
         className="divider"
         whileHover={{ scale: 1.02 }}
-        transition={{ type: 'spring', stiffness: 400 }}
+        transition={{ type: "spring", stiffness: 400 }}
       >
         {href ? (
           <motion.a
@@ -157,37 +157,37 @@ const Section = ({ title, children, href, delay }: SectionProps) => {
         {children}
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
 const AudioPlayer = ({ href, label }: { href: string; label: string }) => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause()
+        audioRef.current.pause();
       } else {
-        audioRef.current.play()
+        audioRef.current.play();
       }
-      setIsPlaying(!isPlaying)
+      setIsPlaying(!isPlaying);
     }
-  }
+  };
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
       const progress =
-        (audioRef.current.currentTime / audioRef.current.duration) * 100
-      setProgress(progress)
+        (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setProgress(progress);
     }
-  }
+  };
 
   const handleEnded = () => {
-    setIsPlaying(false)
-    setProgress(0)
-  }
+    setIsPlaying(false);
+    setProgress(0);
+  };
 
   return (
     <div className="flex flex-col items-center p-2 rounded-lg">
@@ -219,76 +219,76 @@ const AudioPlayer = ({ href, label }: { href: string; label: string }) => {
         </div>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export default function Portfolio() {
-  const [asciiArt, setAsciiArt] = useState('')
+  const [asciiArt, setAsciiArt] = useState("");
   useEffect(() => {
     const loadAsciiArt = async () => {
-      figlet.text('Hi there!', { font: 'Univers' }, (err, data) => {
-        if (!err) setAsciiArt(data || '')
-      })
-    }
-    loadAsciiArt()
-  }, [])
+      figlet.text("Hi there!", { font: "Univers" }, (err, data) => {
+        if (!err) setAsciiArt(data || "");
+      });
+    };
+    loadAsciiArt();
+  }, []);
 
   const techStack = [
     {
-      name: 'Go',
-      icon: '/images/Go-Logo_Aqua.svg',
-      href: 'https://reddit.com/r/programmingcirclejerk/comments/13o6u9c/fuck_you_go/',
-      shadowColor: 'rgba(0,128,255,0.5)',
+      name: "Go",
+      icon: "/images/Go-Logo_Aqua.svg",
+      href: "https://reddit.com/r/programmingcirclejerk/comments/13o6u9c/fuck_you_go/",
+      shadowColor: "rgba(0,128,255,0.5)",
     },
     {
-      name: 'Python',
-      icon: '/images/python-icon.svg',
-      href: 'https://www.reddit.com/r/programmingcirclejerk/comments/m8mjt3/python_ist_a_piece_of_shit_it_shouldnt_be/',
-      shadowColor: 'rgba(0,255,0,0.5)',
+      name: "Python",
+      icon: "/images/python-icon.svg",
+      href: "https://www.reddit.com/r/programmingcirclejerk/comments/m8mjt3/python_ist_a_piece_of_shit_it_shouldnt_be/",
+      shadowColor: "rgba(0,255,0,0.5)",
     },
     {
-      name: 'FastAPI',
-      icon: '/images/fastapi-icon.svg',
-      href: 'https://www.reddit.com/r/programmingcirclejerk/comments/vpniv1/flask_is_my_go_to_for_just_getting_a_web_project/',
-      shadowColor: 'rgba(0,255,0,0.5)',
+      name: "FastAPI",
+      icon: "/images/fastapi-icon.svg",
+      href: "https://www.reddit.com/r/programmingcirclejerk/comments/vpniv1/flask_is_my_go_to_for_just_getting_a_web_project/",
+      shadowColor: "rgba(0,255,0,0.5)",
     },
     {
-      name: '.NET',
-      icon: '/images/dotnet-icon.svg',
-      href: 'https://www.reddit.com/r/programmingcirclejerk/comments/1902tfa/dotnet_and_c_make_me_feel_like_everything_else_is/',
-      shadowColor: 'rgba(255,0,128,0.5)',
+      name: ".NET",
+      icon: "/images/dotnet-icon.svg",
+      href: "https://www.reddit.com/r/programmingcirclejerk/comments/1902tfa/dotnet_and_c_make_me_feel_like_everything_else_is/",
+      shadowColor: "rgba(255,0,128,0.5)",
     },
     {
-      name: 'MongoDB',
-      icon: '/images/mongodb-icon.svg',
-      href: 'https://www.youtube.com/watch?v=b2F-DItXtZs',
-      shadowColor: 'rgba(0,255,0,0.5)',
+      name: "MongoDB",
+      icon: "/images/mongodb-icon.svg",
+      href: "https://www.youtube.com/watch?v=b2F-DItXtZs",
+      shadowColor: "rgba(0,255,0,0.5)",
     },
     {
-      name: 'Typescript',
-      icon: '/images/typescript.svg',
-      href: 'https://www.reddit.com/r/programmingcirclejerk/comments/1aytq9l/i_even_pay_for_copilot_almost_exclusively_to/',
-      shadowColor: 'rgba(255,0,0,0.5)',
+      name: "Typescript",
+      icon: "/images/typescript.svg",
+      href: "https://www.reddit.com/r/programmingcirclejerk/comments/1aytq9l/i_even_pay_for_copilot_almost_exclusively_to/",
+      shadowColor: "rgba(255,0,0,0.5)",
     },
     {
-      name: 'AWS',
-      icon: '/images/aws-logo.svg',
-      href: 'https://reddit.com/r/programmingcirclejerk/comments/1b6modu/an_online_wheel_of_fortune_was_implemented_using/',
-      shadowColor: 'rgba(255,153,0,0.5)',
+      name: "AWS",
+      icon: "/images/aws-logo.svg",
+      href: "https://reddit.com/r/programmingcirclejerk/comments/1b6modu/an_online_wheel_of_fortune_was_implemented_using/",
+      shadowColor: "rgba(255,153,0,0.5)",
     },
     {
-      name: 'SaltStack',
-      icon: '/images/saltstack-icon.svg',
-      href: '#',
-      shadowColor: 'rgba(0,255,255,0.5)',
+      name: "SaltStack",
+      icon: "/images/saltstack-icon.svg",
+      href: "#",
+      shadowColor: "rgba(0,255,255,0.5)",
     },
     {
-      name: 'Docker',
-      icon: '/images/docker-icon.svg',
-      href: 'https://reddit.com/r/programmingcirclejerk/comments/gaen3m/if_your_devs_dont_understand_docker_they_arent/',
-      shadowColor: 'rgba(0,170,255,0.5)',
+      name: "Docker",
+      icon: "/images/docker-icon.svg",
+      href: "https://reddit.com/r/programmingcirclejerk/comments/gaen3m/if_your_devs_dont_understand_docker_they_arent/",
+      shadowColor: "rgba(0,170,255,0.5)",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-base-200 bg-[url('/bg.webp')] bg-cover bg-center bg-fixed relative">
@@ -312,9 +312,9 @@ export default function Portfolio() {
           href="https://www.youtube.com/watch?v=tzjrm0lWsqE"
         >
           <p className="mb-4">
-            Caner, 23 year old software developer from Turkey, studying Computer
-            Engineering. Backend developer at awesome places for a couple years
-            now.
+            Caner, 24 year old software developer from Turkey, studying Computer
+            Engineering. Backend & DevOps developer at awesome places for a
+            couple years now.
           </p>
         </Section>
 
@@ -337,7 +337,7 @@ export default function Portfolio() {
               whileTap={{ scale: 0.95 }}
             >
               <Music size={20} />
-              Check RYM profile
+              RYM
             </motion.a>
             <motion.a
               href="https://github.com/caner-cetin"
@@ -376,14 +376,14 @@ export default function Portfolio() {
 
         <Section title="...cansu.dev?" href={window.location.href} delay={0.4}>
           <>
-            Using <span className="text-red-600 font-extrabold">cansu.dev</span>{' '}
-            because{' '}
+            Using <span className="text-red-600 font-extrabold">cansu.dev</span>{" "}
+            because{" "}
             <a
               className="link text-red-600 font-extrabold hover:text-red-400 transition-colors"
               href="https://caner.dev"
             >
               caner.dev
-            </a>{' '}
+            </a>{" "}
             was already taken. Boo the original owner for doing nothing with
             such a special domain.
           </>
@@ -406,5 +406,5 @@ export default function Portfolio() {
         </Section>
       </div>
     </div>
-  )
+  );
 }
