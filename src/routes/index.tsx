@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { GithubIcon, Mail, Music, Pause, Play } from "lucide-react";
+import { GithubIcon, Mail, Music, Pause, Play, Briefcase } from "lucide-react";
 import figlet from "figlet";
 import { AnimatePresence, motion } from "framer-motion";
 import { createFileRoute } from "@tanstack/react-router";
@@ -311,10 +311,14 @@ export default function Portfolio() {
           title="Who are you?"
           href="https://www.youtube.com/watch?v=tzjrm0lWsqE"
         >
-          <p className="mb-4">
-            Caner, 24 year old software developer from Turkey, studying Computer
-            Engineering. Backend & DevOps developer at awesome places for a
-            couple years now.
+          <p className="mb-4 flex">
+            Caner, 24 year old software developer from Turkey. Backend & DevOps
+            developer at awesome places for a couple years now. Spiritually a
+            horse.
+            <img
+              className="w-40 h-32 justify-center aspect-auto"
+              src="https://media1.tenor.com/m/7ygvYhw0tjsAAAAC/spin-haru-urara.gif"
+            />
           </p>
         </Section>
 
@@ -348,6 +352,15 @@ export default function Portfolio() {
               <GithubIcon size={20} />
               GitHub
             </motion.a>
+            <motion.a
+              href="https://hire.cansu.dev"
+              className="flex items-center gap-2 link font-extrabold hover:text-sky-200 transition-colors"
+              whileHover={{ scale: 1.08, x: 5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Briefcase size={20} />
+              hire me
+            </motion.a>
           </div>
           I am also balding, if it counts.
         </Section>
@@ -376,16 +389,9 @@ export default function Portfolio() {
 
         <Section title="...cansu.dev?" href={window.location.href} delay={0.4}>
           <>
-            Using <span className="text-red-600 font-extrabold">cansu.dev</span>{" "}
-            because{" "}
-            <a
-              className="link text-red-600 font-extrabold hover:text-red-400 transition-colors"
-              href="https://caner.dev"
-            >
-              caner.dev
-            </a>{" "}
-            was already taken. Boo the original owner for doing nothing with
-            such a special domain.
+            Yes, it is because of the reasons you can guess. It is absolutely
+            fine to call me Caner, but if you can, or if we are talking online,
+            please call me Cansu.
           </>
         </Section>
 

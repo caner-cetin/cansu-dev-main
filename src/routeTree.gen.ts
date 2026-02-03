@@ -8,25 +8,13 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as R404Import } from './routes/404'
 import { Route as IndexImport } from './routes/index'
 
-// Create Virtual Routes
-
-const DjLazyImport = createFileRoute('/dj')()
-
 // Create/Update Routes
-
-const DjLazyRoute = DjLazyImport.update({
-  id: '/dj',
-  path: '/dj',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/dj.lazy').then((d) => d.Route))
 
 const R404Route = R404Import.update({
   id: '/404',
@@ -58,13 +46,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
     }
-    '/dj': {
-      id: '/dj'
-      path: '/dj'
-      fullPath: '/dj'
-      preLoaderRoute: typeof DjLazyImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
@@ -73,41 +54,36 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dj': typeof DjLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dj': typeof DjLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dj': typeof DjLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/dj'
+  fullPaths: '/' | '/404'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/dj'
-  id: '__root__' | '/' | '/404' | '/dj'
+  to: '/' | '/404'
+  id: '__root__' | '/' | '/404'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
-  DjLazyRoute: typeof DjLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
-  DjLazyRoute: DjLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -121,8 +97,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/404",
-        "/dj"
+        "/404"
       ]
     },
     "/": {
@@ -130,9 +105,6 @@ export const routeTree = rootRoute
     },
     "/404": {
       "filePath": "404.tsx"
-    },
-    "/dj": {
-      "filePath": "dj.lazy.tsx"
     }
   }
 }
