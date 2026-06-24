@@ -24,8 +24,8 @@ const quickLinks = [
     icon: GithubIcon,
   },
   {
-    label: "RYM",
-    href: "https://rateyourmusic.com/~canercetin",
+    label: "AOTY",
+    href: "https://www.albumoftheyear.org/user/letterbomb/n",
     icon: Music,
   },
   {
