@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import type { ComponentType, SVGProps } from "react";
 import {
   Briefcase,
   GithubIcon,
@@ -8,6 +9,15 @@ import {
   Pause,
   Play,
 } from "lucide-react";
+import AmazonwebservicesOriginalWordmark from "devicons-react/icons/AmazonwebservicesOriginalWordmark";
+import DeviconsReactOriginal from "devicons-react/icons/DeviconsReactOriginal";
+import DockerOriginal from "devicons-react/icons/DockerOriginal";
+import GithubactionsOriginal from "devicons-react/icons/GithubactionsOriginal";
+import GoOriginal from "devicons-react/icons/GoOriginal";
+import KubernetesOriginal from "devicons-react/icons/KubernetesOriginal";
+import PostgresqlOriginal from "devicons-react/icons/PostgresqlOriginal";
+import PythonOriginal from "devicons-react/icons/PythonOriginal";
+import TypescriptOriginal from "devicons-react/icons/TypescriptOriginal";
 import { motion, useReducedMotion } from "framer-motion";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -16,6 +26,9 @@ export const Route = createFileRoute("/")({
 });
 
 const easeOut = [0.23, 1, 0.32, 1] as const;
+type TechIcon = ComponentType<
+  SVGProps<SVGElement> & { size?: number | string }
+>;
 
 const quickLinks = [
   {
@@ -43,47 +56,47 @@ const quickLinks = [
 const techStack = [
   {
     name: "Go",
-    icon: "/images/Go-Logo_Aqua.svg",
+    icon: GoOriginal,
     href: "https://reddit.com/r/programmingcirclejerk/comments/13o6u9c/fuck_you_go/",
   },
   {
     name: "Python",
-    icon: "/images/python-icon.svg",
+    icon: PythonOriginal,
     href: "https://www.reddit.com/r/programmingcirclejerk/comments/m8mjt3/python_ist_a_piece_of_shit_it_shouldnt_be/",
   },
   {
-    name: "FastAPI",
-    icon: "/images/fastapi-icon.svg",
-    href: "https://www.reddit.com/r/programmingcirclejerk/comments/vpniv1/flask_is_my_go_to_for_just_getting_a_web_project/",
+    name: "CI/CD",
+    icon: GithubactionsOriginal,
+    href: "https://www.reddit.com/r/programmingcirclejerk/comments/mmqveg/creating_a_blockchain_distributed_package_manager/",
   },
   {
-    name: ".NET",
-    icon: "/images/dotnet-icon.svg",
-    href: "https://www.reddit.com/r/programmingcirclejerk/comments/1902tfa/dotnet_and_c_make_me_feel_like_everything_else_is/",
+    name: "Kubernetes",
+    icon: KubernetesOriginal,
+    href: "https://www.reddit.com/r/programmingcirclejerk/comments/qnw7r5/kubernetes_made_writing_poor_code_a_breeze_at/",
   },
   {
-    name: "MongoDB",
-    icon: "/images/mongodb-icon.svg",
-    href: "https://www.youtube.com/watch?v=b2F-DItXtZs",
+    name: "Postgres",
+    icon: PostgresqlOriginal,
+    href: "https://www.reddit.com/r/programmingcirclejerk/comments/1f8w80w/vercel_docs_next_lets_create_an_api_route_that/",
   },
   {
     name: "Typescript",
-    icon: "/images/typescript.svg",
+    icon: TypescriptOriginal,
     href: "https://www.reddit.com/r/programmingcirclejerk/comments/1aytq9l/i_even_pay_for_copilot_almost_exclusively_to/",
   },
   {
     name: "AWS",
-    icon: "/images/aws-logo.svg",
+    icon: AmazonwebservicesOriginalWordmark,
     href: "https://reddit.com/r/programmingcirclejerk/comments/1b6modu/an_online_wheel_of_fortune_was_implemented_using/",
   },
   {
     name: "SaltStack",
-    icon: "/images/saltstack-icon.svg",
-    href: "#",
+    icon: DeviconsReactOriginal,
+    href: "https://www.reddit.com/r/programmingcirclejerk/comments/1kgcdgg/cowsay_and_the_ansible_output_achieved_when/",
   },
   {
     name: "Docker",
-    icon: "/images/docker-icon.svg",
+    icon: DockerOriginal,
     href: "https://reddit.com/r/programmingcirclejerk/comments/gaen3m/if_your_devs_dont_understand_docker_they_arent/",
   },
 ];
@@ -132,12 +145,12 @@ const PageSection = ({ index, title, href, children }: PageSectionProps) => {
 
 const TechTile = ({
   href,
-  icon,
+  icon: Icon,
   name,
   index,
 }: {
   href: string;
-  icon: string;
+  icon: TechIcon;
   name: string;
   index: number;
 }) => {
@@ -155,10 +168,10 @@ const TechTile = ({
       <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400 transition-colors duration-200 ease-out group-hover:text-slate-100">
         {name}
       </span>
-      <img
-        src={icon}
-        alt={`${name} logo`}
-        className="mt-5 h-8 w-fit max-w-20 opacity-70 grayscale transition duration-200 ease-out group-hover:opacity-100 group-hover:grayscale-0"
+      <Icon
+        aria-label={`${name} logo`}
+        size="2rem"
+        className="mt-5 opacity-70 grayscale transition duration-200 ease-out group-hover:opacity-100 group-hover:grayscale-0"
       />
     </motion.a>
   );

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tanstack/react-router": "^1.87.9",
+    "devicons-react": "^1.5.0",
     "figlet": "^1.8.0",
     "framer-motion": "^11.13.5",
     "lucide-react": "^0.468.0",
