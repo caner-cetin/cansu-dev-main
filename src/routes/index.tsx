@@ -38,7 +38,7 @@ const quickLinks = [
   },
   {
     label: "AOTY",
-    href: "https://www.albumoftheyear.org/user/letterbomb/n",
+    href: "https://www.albumoftheyear.org/user/letterbomb/",
     icon: Music,
   },
   {
