@@ -251,7 +251,7 @@ const IdentityRail = () => {
           cansu.dev
         </div>
         <h1 className="text-4xl font-semibold leading-none text-white sm:text-5xl">
-          Cansu
+          Caner Çetin
         </h1>
         <p className="mt-4 max-w-sm font-mono text-sm uppercase tracking-[0.18em] text-slate-300">
           Software Engineer
@@ -304,7 +304,7 @@ export default function Portfolio() {
             >
               <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_180px] md:items-center">
                 <p>
-                  Cansu, 24 year old software developer from Turkey. Backend &
+                  Caner Çetin, 24 year old software developer from Turkey. Backend &
                   DevOps developer at awesome places for a couple years now.
                   Spiritually a horse.
                 </p>
@@ -331,10 +331,7 @@ export default function Portfolio() {
                 Caner is pronounced like "Janer", or simply "John", or even
                 "Canoe".
               </p>
-              <p className="mt-3 text-slate-300">
-                I couldn't find clean pronunciation examples for Cansu, but it
-                sounds very similar to Caner with the letters rearranged.
-              </p>
+              
               <div className="mt-6 grid gap-3 md:grid-cols-3">
                 <AudioPlayer
                   href="/audio/pronounce-meh.mp3"
@@ -353,9 +350,7 @@ export default function Portfolio() {
 
             <PageSection index="04" title="...cansu.dev?" href="/">
               <p>
-                Yes, it is because of the reasons you can guess. It is
-                absolutely fine to call me Caner, but if you can, or if we are
-                talking online, please call me Cansu.
+                Preferred name. 
               </p>
             </PageSection>
 
