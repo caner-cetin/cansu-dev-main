@@ -348,12 +348,6 @@ export default function Portfolio() {
               </div>
             </PageSection>
 
-            <PageSection index="04" title="...cansu.dev?" href="/">
-              <p>
-                My legal name is Caner; however, in line with my personal journey and preference, I use the name Cansu in both my professional and daily life. This discrepancy arises solely from the difference between my legal name and the name I use in everyday life; it is not intended to imply any lack of transparency.
-              </p>
-            </PageSection>
-
             <PageSection
               index="05"
               title="Contact"
